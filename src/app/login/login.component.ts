@@ -14,6 +14,12 @@ export class LoginComponent implements OnInit {
   }
   public data:any=[]
   ngOnInit(): void {
-    this.data=this._services.getData()
+    this._services.getData().subscribe({
+      next:(data)=> {
+        this.data=data;
+        console.log('fetch data',data)
+      },
+      error:(err)=>console.log("error fetching users",err)
+    })
   }
 }

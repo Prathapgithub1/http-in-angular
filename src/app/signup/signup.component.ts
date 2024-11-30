@@ -12,7 +12,13 @@ export class SignupComponent implements OnInit {
   public data:any=[]
   constructor(private _services:StudentsService){}
   ngOnInit(): void {
-      this.data=this._services.getData()
+      this._services.getData().subscribe({
+        next:(data)=>{
+          this.data=data;
+          console.log('signUp',data)
+        },
+        error:(error)=>console.log('error at signUp',error)
+      })
   }
 
 }
